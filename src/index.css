@@ -1,0 +1,46 @@
+/* @import-normalize; */
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #4d556a;
+  background-color: #f8f9fb;
+}
+
+html {
+  box-sizing: border-box;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  padding-top: 92px;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
