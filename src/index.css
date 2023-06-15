@@ -14,8 +14,9 @@ html {
 }
 
 body {
-  padding-top: 92px;
+  margin: 0;
 }
+
 *,
 *::before,
 *::after {
