@@ -3,6 +3,7 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Movies } from './pages/Movies';
 import { GlobalStyles, Header, Link } from './App.styled';
+import { MovieDetails } from './pages/movieDetails/MovieDetails';
 
 export const App = () => {
   return (
@@ -23,7 +24,15 @@ export const App = () => {
           path='/movies'
           element={<Movies />}
         />
+        <Route
+          path='/movies/:movieId'
+          element={<MovieDetails />}
+        />
       </Routes>
     </>
   );
 };
+
+/**
+ * Przeniesc page do folderow
+ */

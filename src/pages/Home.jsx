@@ -1,5 +1,5 @@
 import { HomeList } from '../components/homeList/HomeList';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import fetchFilms from '../utils/fetchFilms';
 
 export const Home = () => {
