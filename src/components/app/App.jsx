@@ -4,7 +4,6 @@ import { Movies } from '../../pages/movies/Movies';
 import { MovieDetails } from '../../pages/movieDetails/MovieDetails';
 import { SharedLayout } from '../sharedLayout/SharedLayout';
 import { GlobalStyles } from './App.styled';
-import { Test } from '../../pages/test';
 
 export const App = () => {
   return (

@@ -17,7 +17,8 @@ export const Movies = () => {
   const handleSubmit = query => {
     setQuery(query);
     setFilms([]);
-
+    searchParams.set('query', query);
+    setSearchParams(searchParams);
     shouldFetchData.current = true;
   };
 
@@ -28,8 +29,6 @@ export const Movies = () => {
         const movies = await fetchFilms.movieSearch(query);
         const { results } = movies;
         setFilms(results);
-        searchParams.set('query', query);
-        setSearchParams(searchParams);
         shouldFetchData.current = false;
       } catch (error) {
         setError(error);
