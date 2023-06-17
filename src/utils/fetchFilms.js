@@ -8,8 +8,8 @@ const restApi = async () => {
   return response.data;
 };
 
-const movieSearch = async query => {
-  const response = await axios('/search/movie?query=' + `${query}` + `&api_key=${API_KEY}`);
+const movieSearch = async searchQuery => {
+  const response = await axios('/search/movie?query=' + `${searchQuery}` + `&api_key=${API_KEY}`);
   return response.data;
 };
 

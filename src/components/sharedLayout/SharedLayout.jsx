@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { Container, Header, Link } from '../app/App.styled';
+import { Container, Header, Link } from './SharedLayout.styled';
+import { useEffect } from 'react';
 
 export const SharedLayout = () => {
   return (

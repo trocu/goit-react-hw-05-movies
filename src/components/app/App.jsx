@@ -4,6 +4,7 @@ import { Movies } from '../../pages/movies/Movies';
 import { MovieDetails } from '../../pages/movieDetails/MovieDetails';
 import { SharedLayout } from '../sharedLayout/SharedLayout';
 import { GlobalStyles } from './App.styled';
+import { Test } from '../../pages/test';
 
 export const App = () => {
   return (
@@ -25,6 +26,10 @@ export const App = () => {
           <Route
             path='movies/:movieId'
             element={<MovieDetails />}
+          />
+          <Route
+            path='*'
+            element={<Home />}
           />
         </Route>
       </Routes>

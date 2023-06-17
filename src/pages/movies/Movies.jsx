@@ -2,20 +2,23 @@ import { useState, useRef, useEffect } from 'react';
 import fetchFilms from '../../utils/fetchFilms';
 import { MoviesList } from '../../components/moviesList/MoviesList';
 import { MoviesSearchBar } from '../../components/moviesSearchBar/MoviesSearchBar';
+import { useSearchParams } from 'react-router-dom';
 
 export const Movies = () => {
   const [query, setQuery] = useState('');
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const shouldFetchData = useRef(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryParams = searchParams.get('query');
+  console.log(queryParams);
 
   const handleSubmit = query => {
     setQuery(query);
     setFilms([]);
+
     shouldFetchData.current = true;
-    // console.log('TEST submit');
   };
 
   useEffect(() => {
@@ -25,6 +28,8 @@ export const Movies = () => {
         const movies = await fetchFilms.movieSearch(query);
         const { results } = movies;
         setFilms(results);
+        searchParams.set('query', query);
+        setSearchParams(searchParams);
         shouldFetchData.current = false;
       } catch (error) {
         setError(error);

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import fetchFilms from '../../utils/fetchFilms';
-import { Details, Main } from './MovieDetails.styled';
+import { Details, Main, CardWrapper } from './MovieDetails.styled';
+import { Link } from 'react-router-dom';
 
 export const MovieDetails = () => {
   const [details, setDetails] = useState([]);
@@ -30,25 +31,36 @@ export const MovieDetails = () => {
   const releaseDate = new Date(release_date);
   const countVotePercentage = () => Math.round((vote_average / 10) * 100);
   const genresName = genres.map(genre => genre.name).join(' | ');
+  const location = useLocation();
+  console.log(location.state.from);
+  const backLinkHref = location.state?.from ?? '/movie';
+
+  /**
+   * Sprawdzic dlaczego go back
+   * nie bierze klucza search z location.state.from
+   */
 
   return (
     <Main>
-      <div>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-          alt={original_title}
-        />
-      </div>
-      <Details>
-        <h2>
-          {title} ({releaseDate.getFullYear()})
-        </h2>
-        <p>User score: {countVotePercentage()}%</p>
-        <h3>Overview</h3>
-        <p>{overview}</p>
-        <h3>Genres</h3>
-        <p>{genresName}</p>
-      </Details>
+      <Link to={backLinkHref}>Go back</Link>
+      <CardWrapper>
+        <div>
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+            alt={original_title}
+          />
+        </div>
+        <Details>
+          <h2>
+            {title} ({releaseDate.getFullYear()})
+          </h2>
+          <p>User score: {countVotePercentage()}%</p>
+          <h3>Overview</h3>
+          <p>{overview}</p>
+          <h3>Genres</h3>
+          <p>{genresName}</p>
+        </Details>
+      </CardWrapper>
     </Main>
   );
 };

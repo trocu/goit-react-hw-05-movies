@@ -1,6 +1,5 @@
-// import { HomeList } from '../components/homeList/HomeList';
 import { MoviesList } from '../../components/moviesList/MoviesList';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import fetchFilms from '../../utils/fetchFilms';
 
 export const Home = () => {
@@ -25,9 +24,9 @@ export const Home = () => {
     handleFetch();
   }, []);
 
-  const showDetails = id => {
-    console.log(id);
-  };
+  // const showDetails = id => {
+  //   console.log(id);
+  // };
 
   return (
     <main>

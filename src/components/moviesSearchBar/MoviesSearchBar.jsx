@@ -6,7 +6,6 @@ export const MoviesSearchBar = ({ onSubmit }) => {
   const handleChange = e => {
     const { value } = e.target;
     setQuery(value);
-    // console.log(value);
   };
 
   const handleSubmit = e => {
