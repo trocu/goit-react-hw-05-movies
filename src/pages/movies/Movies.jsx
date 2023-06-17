@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import fetchFilms from '../utils/fetchFilms';
-import { MoviesList } from '../components/moviesList/MoviesList';
-import { MoviesSearchBar } from '../components/moviesSearchBar/MoviesSearchBar';
+import fetchFilms from '../../utils/fetchFilms';
+import { MoviesList } from '../../components/moviesList/MoviesList';
+import { MoviesSearchBar } from '../../components/moviesSearchBar/MoviesSearchBar';
 
 export const Movies = () => {
   const [query, setQuery] = useState('');

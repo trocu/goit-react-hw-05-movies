@@ -24,7 +24,7 @@ export const MovieDetails = () => {
       }
     };
     handleFetch();
-  }, []);
+  }, [movieId]);
 
   const { poster_path, original_title, title, vote_average, overview, release_date } = details;
   const releaseDate = new Date(release_date);

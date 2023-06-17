@@ -1,6 +1,7 @@
-import { HomeList } from '../components/homeList/HomeList';
+// import { HomeList } from '../components/homeList/HomeList';
+import { MoviesList } from '../../components/moviesList/MoviesList';
 import { useEffect, useState, useRef } from 'react';
-import fetchFilms from '../utils/fetchFilms';
+import fetchFilms from '../../utils/fetchFilms';
 
 export const Home = () => {
   const [films, setFilms] = useState([]);
@@ -30,10 +31,8 @@ export const Home = () => {
 
   return (
     <main>
-      <HomeList
-        films={films}
-        onClickCallback={showDetails}
-      />
+      <h1>Trending today</h1>
+      <MoviesList films={films} />
     </main>
   );
 };
