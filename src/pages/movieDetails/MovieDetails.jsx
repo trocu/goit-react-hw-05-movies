@@ -32,7 +32,7 @@ export const MovieDetails = () => {
   const countVotePercentage = () => Math.round((vote_average / 10) * 100);
   const genresName = genres.map(genre => genre.name).join(' | ');
   const location = useLocation();
-  console.log(location.state.from);
+  console.log(location);
   const backLinkHref = location.state?.from ?? '/movie';
 
   /**

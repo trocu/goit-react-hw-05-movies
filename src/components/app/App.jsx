@@ -26,10 +26,6 @@ export const App = () => {
             path='movies/:movieId'
             element={<MovieDetails />}
           />
-          <Route
-            path='*'
-            element={<Home />}
-          />
         </Route>
       </Routes>
     </>
