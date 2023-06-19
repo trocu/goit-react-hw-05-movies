@@ -1,8 +1,9 @@
 import { MoviesList } from '../../components/moviesList/MoviesList';
 import { useEffect, useState } from 'react';
 import fetchFilms from '../../utils/fetchFilms';
+import { Loader } from '../../components/loader/Loader';
 
-export const Home = () => {
+const Home = () => {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +32,11 @@ export const Home = () => {
   return (
     <main>
       <h1>Trending today</h1>
-      <MoviesList films={films} />
+      {error && <p>Whoops, something went wrong: {error.message}</p>}
+      {films.length > 0 && <MoviesList films={films} />}
+      {isLoading && <Loader />}
     </main>
   );
 };
+
+export default Home;

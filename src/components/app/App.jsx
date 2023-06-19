@@ -1,14 +1,21 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Home } from '../../pages/home/Home';
-import { Movies } from '../../pages/movies/Movies';
-import { MovieDetails } from '../../pages/movieDetails/MovieDetails';
-import { SharedLayout } from '../sharedLayout/SharedLayout';
+// import { Home } from '../../pages/home/Home';
+// import { Movies } from '../../pages/movies/Movies';
+// import { MovieDetails } from '../../pages/movieDetails/MovieDetails';
+// import { SharedLayout } from '../sharedLayout/SharedLayout';
 import { GlobalStyles } from './App.styled';
 
-export const App = () => {
+const Home = lazy(() => import('../../pages/home/Home'));
+const Movies = lazy(() => import('../../pages/movies/Movies'));
+const MovieDetails = lazy(() => import('../../pages/movieDetails/MovieDetails'));
+const SharedLayout = lazy(() => import('../sharedLayout/SharedLayout'));
+
+const App = () => {
   return (
     <>
       <GlobalStyles />
+
       <Routes>
         <Route
           path='/'
@@ -31,3 +38,5 @@ export const App = () => {
     </>
   );
 };
+
+export default App;

@@ -3,8 +3,9 @@ import fetchFilms from '../../utils/fetchFilms';
 import { MoviesList } from '../../components/moviesList/MoviesList';
 import { MoviesSearchBar } from '../../components/moviesSearchBar/MoviesSearchBar';
 import { useSearchParams } from 'react-router-dom';
+import { Loader } from '../../components/loader/Loader';
 
-export const Movies = () => {
+const Movies = () => {
   const [query, setQuery] = useState('');
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
@@ -45,7 +46,11 @@ export const Movies = () => {
   return (
     <main>
       <MoviesSearchBar onSubmit={handleSubmit} />
-      <MoviesList films={films} />
+      {error && <p>Whoops, something went wrong: {error.message}</p>}
+      {films.length > 0 && <MoviesList films={films} />}
+      {isLoading && <Loader />}
     </main>
   );
 };
+
+export default Movies;
