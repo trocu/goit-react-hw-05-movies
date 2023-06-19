@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
 import fetchFilms from '../../utils/fetchFilms';
 import { Details, Main, CardWrapper } from './MovieDetails.styled';
 import { Loader } from '../../components/loader/Loader';
+import Cast from '../../components/cast/Cast';
+import Reviews from '../../components/reviews/Reviews';
 
 const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState([]);
@@ -15,8 +17,9 @@ const MovieDetails = () => {
   const countVotePercentage = () => Math.round((vote_average / 10) * 100);
   const genresName = genres.map(genre => genre.name).join(' | ');
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movie';
+  const backLinkHref = location.state?.from ?? '/movies';
   const movieInfoLength = Object.keys(movieInfo).length;
+  // console.log(movieInfo);
 
   useEffect(() => {
     const handleFetch = async () => {
@@ -40,24 +43,48 @@ const MovieDetails = () => {
       {error && <p>Whoops, something went wrong: {error.message}</p>}
       {isLoading && <Loader />}
       {movieInfoLength > 0 && (
-        <CardWrapper>
+        <>
+          <CardWrapper>
+            <div>
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                alt={original_title}
+              />
+            </div>
+            <Details>
+              <h2>
+                {title} ({releaseDate.getFullYear()})
+              </h2>
+              <p>User score: {countVotePercentage()}%</p>
+              <h3>Overview</h3>
+              <p>{overview}</p>
+              <h3>Genres</h3>
+              <p>{genresName}</p>
+            </Details>
+          </CardWrapper>
           <div>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-              alt={original_title}
-            />
+            <p>Additional informations</p>
+            <ul>
+              <li>
+                <Link
+                  to='cast'
+                  element={<Cast />}
+                >
+                  Cast
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='reviews'
+                  element={<Reviews />}
+                >
+                  Reviews
+                </Link>
+              </li>
+            </ul>
+            <Outlet />
           </div>
-          <Details>
-            <h2>
-              {title} ({releaseDate.getFullYear()})
-            </h2>
-            <p>User score: {countVotePercentage()}%</p>
-            <h3>Overview</h3>
-            <p>{overview}</p>
-            <h3>Genres</h3>
-            <p>{genresName}</p>
-          </Details>
-        </CardWrapper>
+        </>
       )}
     </Main>
   );

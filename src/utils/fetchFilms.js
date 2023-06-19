@@ -9,14 +9,19 @@ const restApi = async () => {
 };
 
 const movieSearch = async searchQuery => {
-  const response = await axios('/search/movie?query=' + `${searchQuery}` + `&api_key=${API_KEY}`);
+  const response = await axios(`/search/movie?query=${searchQuery}&api_key=${API_KEY}`);
   return response.data;
 };
 
 const movieDetails = async id => {
-  const response = await axios('/movie/' + `${id}` + `?api_key=${API_KEY}`);
+  const response = await axios(`/movie/${id}?api_key=${API_KEY}`);
   return response.data;
 };
 
-const fetchFilms = { restApi, movieSearch, movieDetails };
+const movieCredits = async id => {
+  const response = await axios(`/movie/${id}/credits?api_key=${API_KEY}`);
+  return response.data;
+};
+
+const fetchFilms = { restApi, movieSearch, movieDetails, movieCredits };
 export default fetchFilms;
