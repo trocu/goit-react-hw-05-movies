@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const MoviesSearchBar = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
@@ -31,3 +32,5 @@ export const MoviesSearchBar = ({ onSubmit }) => {
     </div>
   );
 };
+
+MoviesSearchBar.propTypes = { onSubmit: PropTypes.func };

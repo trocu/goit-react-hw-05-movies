@@ -23,5 +23,10 @@ const movieCredits = async id => {
   return response.data;
 };
 
-const fetchFilms = { restApi, movieSearch, movieDetails, movieCredits };
+const movieReviews = async id => {
+  const response = await axios(`/movie/${id}/reviews?api_key=${API_KEY}`);
+  return response.data;
+};
+
+const fetchFilms = { restApi, movieSearch, movieDetails, movieCredits, movieReviews };
 export default fetchFilms;

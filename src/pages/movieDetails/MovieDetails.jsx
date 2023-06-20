@@ -17,7 +17,7 @@ const MovieDetails = () => {
   const countVotePercentage = () => Math.round((vote_average / 10) * 100);
   const genresName = genres.map(genre => genre.name).join(' | ');
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
+  const backLinkHref = location.state?.from ?? '/';
   const movieInfoLength = Object.keys(movieInfo).length;
   // console.log(movieInfo);
 

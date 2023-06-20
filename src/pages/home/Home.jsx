@@ -25,10 +25,6 @@ const Home = () => {
     handleFetch();
   }, []);
 
-  // const showDetails = id => {
-  //   console.log(id);
-  // };
-
   return (
     <main>
       <h1>Trending today</h1>
