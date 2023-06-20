@@ -1,20 +1,12 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const CardWrapper = styled.div`
+export const Form = styled.form`
   display: flex;
-  gap: 10px;
-`;
-
-export const Details = styled.div`
-  display: flex;
-  flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
-  text-align: none;
+  gap: 5px;
 `;
 
-export const GoBack = styled(NavLink)`
+export const Button = styled.button`
   display: inline-block;
   text-decoration: none;
   font-size: 10px;
@@ -22,15 +14,10 @@ export const GoBack = styled(NavLink)`
   color: white;
   border-radius: 3px;
   border: 1px solid #5e81ac;
-  margin-bottom: 0.5rem;
   padding: 0.2rem;
   transition: all 200ms ease-in-out;
 
   &:hover {
     filter: brightness(0.85);
   }
-`;
-
-export const InfoWrapper = styled.div`
-  padding-top: 20px;
 `;

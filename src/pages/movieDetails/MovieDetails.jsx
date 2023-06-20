@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
 import fetchFilms from '../../utils/fetchFilms';
-import { Details, Main, CardWrapper } from './MovieDetails.styled';
+import { Details, CardWrapper, GoBack, InfoWrapper } from './MovieDetails.styled';
 import { Loader } from '../../components/loader/Loader';
 import Cast from '../../components/cast/Cast';
 import Reviews from '../../components/reviews/Reviews';
@@ -17,9 +17,8 @@ const MovieDetails = () => {
   const countVotePercentage = () => Math.round((vote_average / 10) * 100);
   const genresName = genres.map(genre => genre.name).join(' | ');
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = location.state?.from ?? '/movies';
   const movieInfoLength = Object.keys(movieInfo).length;
-  // console.log(movieInfo);
 
   useEffect(() => {
     const handleFetch = async () => {
@@ -38,8 +37,8 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <Main>
-      <Link to={backLinkHref}>Go back</Link>
+    <>
+      <GoBack to={backLinkHref}>Go back</GoBack>
       {error && <p>Whoops, something went wrong: {error.message}</p>}
       {isLoading && <Loader />}
       {movieInfoLength > 0 && (
@@ -62,8 +61,8 @@ const MovieDetails = () => {
               <p>{genresName}</p>
             </Details>
           </CardWrapper>
-          <div>
-            <p>Additional informations</p>
+          <InfoWrapper>
+            <h3>Additional informations</h3>
             <ul>
               <li>
                 <Link
@@ -83,10 +82,10 @@ const MovieDetails = () => {
               </li>
             </ul>
             <Outlet />
-          </div>
+          </InfoWrapper>
         </>
       )}
-    </Main>
+    </>
   );
 };
 

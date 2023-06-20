@@ -12,8 +12,9 @@ const Movies = () => {
   const [isLoading, setIsLoading] = useState(false);
   const shouldFetchData = useRef(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const queryParams = searchParams.get('query');
-  console.log(queryParams);
+  // const queryParams = searchParams.get('query');
+  // console.log('query params', queryParams);
+  // console.log('typeof', typeof queryParams);
 
   const handleSubmit = query => {
     setQuery(query);
@@ -44,12 +45,12 @@ const Movies = () => {
   }, [query]);
 
   return (
-    <main>
+    <>
       <MoviesSearchBar onSubmit={handleSubmit} />
       {error && <p>Whoops, something went wrong: {error.message}</p>}
       {films.length > 0 && <MoviesList films={films} />}
       {isLoading && <Loader />}
-    </main>
+    </>
   );
 };
 
