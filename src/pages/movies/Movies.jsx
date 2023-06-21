@@ -1,37 +1,33 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import fetchFilms from '../../utils/fetchFilms';
-import { MoviesList } from '../../components/moviesList/MoviesList';
+// import { MoviesList } from '../../components/moviesList/MoviesList';
 import { MoviesSearchBar } from '../../components/moviesSearchBar/MoviesSearchBar';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import { Loader } from '../../components/loader/Loader';
 
 const Movies = () => {
-  const [query, setQuery] = useState('');
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const shouldFetchData = useRef(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  // const queryParams = searchParams.get('query');
+  const queryParams = searchParams.get('query');
+  const location = useLocation();
   // console.log('query params', queryParams);
   // console.log('typeof', typeof queryParams);
 
   const handleSubmit = query => {
-    setQuery(query);
-    setFilms([]);
+    // setFilms([]);
     searchParams.set('query', query);
     setSearchParams(searchParams);
-    shouldFetchData.current = true;
   };
 
   useEffect(() => {
     const handleQuery = async () => {
       setIsLoading(true);
       try {
-        const movies = await fetchFilms.movieSearch(query);
+        const movies = await fetchFilms.movieSearch(queryParams);
         const { results } = movies;
         setFilms(results);
-        shouldFetchData.current = false;
       } catch (error) {
         setError(error);
       } finally {
@@ -39,16 +35,31 @@ const Movies = () => {
       }
     };
 
-    if (shouldFetchData.current && query.length > 0) {
+    if (queryParams) {
       handleQuery();
+      console.log('queryparams');
     }
-  }, [query]);
+  }, [queryParams]);
 
   return (
     <>
       <MoviesSearchBar onSubmit={handleSubmit} />
       {error && <p>Whoops, something went wrong: {error.message}</p>}
-      {films.length > 0 && <MoviesList films={films} />}
+      {films.length > 0 && (
+        <ul>
+          {films.map(({ id, title }) => (
+            <li key={id}>
+              <Link
+                to={`/movies/${id}`}
+                state={{ from: location }}
+              >
+                {title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+      {/* {films.length > 0 && <MoviesList films={films} />} */}
       {isLoading && <Loader />}
     </>
   );
