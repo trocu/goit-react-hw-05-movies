@@ -30,28 +30,32 @@ const Cast = () => {
     <div>
       {error && <p>Whoops, something went wrong: {error.message}</p>}
       {isLoading && <Loader />}
-      <ul>
-        {movieCast.map(({ id, name, profile_path, original_name, character }) => (
-          <CardItem key={id}>
-            {profile_path ? (
-              <img
-                width='40'
-                src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
-                alt={original_name}
-              />
-            ) : (
-              <img
-                width='40'
-                src={NoFoto}
-                alt={original_name}
-              />
-            )}
-            <p>
-              {name} | <Character>{character}</Character>
-            </p>
-          </CardItem>
-        ))}
-      </ul>
+      {movieCast.length > 0 ? (
+        <ul>
+          {movieCast.map(({ id, name, profile_path, original_name, character }) => (
+            <CardItem key={id}>
+              {profile_path ? (
+                <img
+                  width='40'
+                  src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
+                  alt={original_name}
+                />
+              ) : (
+                <img
+                  width='40'
+                  src={NoFoto}
+                  alt={original_name}
+                />
+              )}
+              <p>
+                {name} | <Character>{character}</Character>
+              </p>
+            </CardItem>
+          ))}
+        </ul>
+      ) : (
+        <p>Sorry, we don&apos;t have any cast for this movie</p>
+      )}
     </div>
   );
 };

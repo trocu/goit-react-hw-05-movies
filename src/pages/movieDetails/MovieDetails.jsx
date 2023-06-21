@@ -60,7 +60,7 @@ const MovieDetails = () => {
             </Poster>
             <Details>
               <h2>
-                {title} ({releaseDate.getFullYear()})
+                {title} ({!isNaN(releaseDate) ? releaseDate.getFullYear() : 'Date unknown'})
               </h2>
               <p>User score: {countVotePercentage()}%</p>
               <h3>Overview</h3>

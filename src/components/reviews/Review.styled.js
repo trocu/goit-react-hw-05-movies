@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CardItem = styled.li`
-  padding-block: 5px;
+  padding: 5px;
 
   &:nth-child(odd) {
     background: #eceff4;
