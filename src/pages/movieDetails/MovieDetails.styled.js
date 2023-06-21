@@ -6,6 +6,10 @@ export const CardWrapper = styled.div`
   gap: 10px;
 `;
 
+export const Poster = styled.div`
+  max-width: 150px;
+`;
+
 export const Details = styled.div`
   display: flex;
   flex-direction: column;

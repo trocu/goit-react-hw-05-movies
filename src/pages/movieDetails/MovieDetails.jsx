@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
 import fetchFilms from '../../utils/fetchFilms';
-import { Details, CardWrapper, GoBack, InfoWrapper } from './MovieDetails.styled';
+import { Details, CardWrapper, GoBack, InfoWrapper, Poster } from './MovieDetails.styled';
 import { Loader } from '../../components/loader/Loader';
 import Cast from '../../components/cast/Cast';
 import Reviews from '../../components/reviews/Reviews';
+import NoPoster from '../../assets/noPoster.png';
 
 const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState([]);
@@ -44,12 +45,19 @@ const MovieDetails = () => {
       {movieInfoLength > 0 && (
         <>
           <CardWrapper>
-            <div>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                alt={original_title}
-              />
-            </div>
+            <Poster>
+              {poster_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                  alt={original_title}
+                />
+              ) : (
+                <img
+                  src={NoPoster}
+                  alt='No poster'
+                />
+              )}
+            </Poster>
             <Details>
               <h2>
                 {title} ({releaseDate.getFullYear()})
