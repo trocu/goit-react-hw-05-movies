@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import fetchFilms from '../../utils/fetchFilms';
-// import { MoviesList } from '../../components/moviesList/MoviesList';
+import { MoviesList } from '../../components/moviesList/MoviesList';
 import { MoviesSearchBar } from '../../components/moviesSearchBar/MoviesSearchBar';
-import { useSearchParams, Link, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { Loader } from '../../components/loader/Loader';
 
 const Movies = () => {
@@ -11,12 +11,8 @@ const Movies = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParams = searchParams.get('query');
-  const location = useLocation();
-  // console.log('query params', queryParams);
-  // console.log('typeof', typeof queryParams);
 
   const handleSubmit = query => {
-    // setFilms([]);
     searchParams.set('query', query);
     setSearchParams(searchParams);
   };
@@ -37,7 +33,6 @@ const Movies = () => {
 
     if (queryParams) {
       handleQuery();
-      console.log('queryparams');
     }
   }, [queryParams]);
 
@@ -45,21 +40,7 @@ const Movies = () => {
     <>
       <MoviesSearchBar onSubmit={handleSubmit} />
       {error && <p>Whoops, something went wrong: {error.message}</p>}
-      {films.length > 0 && (
-        <ul>
-          {films.map(({ id, title }) => (
-            <li key={id}>
-              <Link
-                to={`/movies/${id}`}
-                state={{ from: location }}
-              >
-                {title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-      {/* {films.length > 0 && <MoviesList films={films} />} */}
+      {films.length > 0 && <MoviesList films={films} />}
       {isLoading && <Loader />}
     </>
   );
