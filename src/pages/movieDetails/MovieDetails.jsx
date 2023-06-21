@@ -5,7 +5,7 @@ import { Details, CardWrapper, GoBack, InfoWrapper, Poster } from './MovieDetail
 import { Loader } from '../../components/loader/Loader';
 import Cast from '../../components/cast/Cast';
 import Reviews from '../../components/reviews/Reviews';
-import NoPoster from '../../assets/noPoster.png';
+import NoPoster from '../../assets/emptyPoster.png';
 
 const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState([]);
